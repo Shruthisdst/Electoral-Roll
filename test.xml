@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE voters_list SYSTEM "voters_list.dtd">
+
+<voters_list>
+	<entry>
+		<name>
+			<applicant>shruthi</applicant>
+			<father>sdfg</father>
+			<mother />
+			<husband />
+		</name>
+		<sex>female</sex>
+		<dob>14-05-1991</dob>
+		<age>24</age>
+		<qualification>be</qualification>
+		<occupation>engineer</occupation>
+		<address>
+			<house_num>1-217</house_num>
+			<street>ranganatha nagara</street>
+			<town>srp</town>
+			<post_office>srp</post_office>
+			<taluk>srp</taluk>
+			<district>mandya</district>
+			<mobile>7353549269</mobile>
+			<telephone>223456</telephone>
+			<email>shruthitr.nayak@gmial.com</email>
+		</address>
+		<graduation_details>
+			<subject></subject>
+			<university>vtu</university>
+			<year>2013</year>
+		</graduation_details>
+		<constituency_details>
+			<nummber>213</nummber>
+			<cname>Mysore</cname>
+			<part>21</part>
+			<psnum>345</psnum>
+			<epic_num>NAV213468</epic_num>
+		</constituency_details>
+	</entry>
+</voters_list>
