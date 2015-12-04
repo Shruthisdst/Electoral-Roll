@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE voters_list SYSTEM "voters_list.dtd">
+
+<voters_list>
+	<entry>
+		<name>
+			<applicant></applicant>
+			<father></father>
+			<mother></mother>
+			<husband></husband>
+		</name>
+		<sex></sex>
+		<dob></dob>
+		<age></age>
+		<qualification></qualification>
+		<occupation></occupation>
+		<address>
+			<details></details>
+			<house_num></house_num>
+			<street></street>
+			<town></town>
+			<post_office></post_office>
+			<taluk></taluk>
+			<district></district>
+			<mobile></mobile>
+			<telephone></telephone>
+			<email></email>
+		</address>
+		<graduation_details>
+			<subject></subject>
+			<university></university>
+			<year></year>
+		</graduation_details>
+		<constituency_details>
+			<nummber></nummber>
+			<cname></cname>
+			<part></part>
+			<psnum></psnum>
+			<epic_num></epic_num>
+		</constituency_details>
+	</entry>
+</voters_list>

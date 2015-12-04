@@ -15,13 +15,9 @@
 
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
-		<div class="navbar-header">
-		  <img src="images/images.jpeg" alt="Logo" />
-		  <a class="title" href="#"></a>
-		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			 <ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Home</a></li>
+			<li><a href="index.php">Home</a></li>
 <!--
 			<li><a href="about.html">About Us</a></li>
 			<li><a href="#">Application Form</a></li>
@@ -34,13 +30,14 @@
 <div class="container">
 	<h1 class="text-center">Application Form</h1>
 <?php
+$id = $_POST['id_1'];
 $name = $_POST['I_sec1_1'];
 $sex = $_POST['I_sec1_2'];
 $gardian = $_POST['I_sec1_3'];
 $checkList = $_POST['list'];
 $qualification = $_POST['I_sec1_4'];
 $occupation = $_POST['I_sec1_5'];
-$address = $_POST['I_sec1_6'];
+$details = $_POST['I_sec1_6'];
 $houseNum = $_POST['I_sec1_7'];
 $street = $_POST['I_sec1_8'];
 $town = $_POST['I_sec1_9'];
@@ -64,6 +61,7 @@ $mobile = $_POST['II_sec6_1'];
 $telephone = $_POST['II_sec6_2'];
 $email = $_POST['II_sec7_1'];
 $year = '';
+
 if($year1)
 {
 	$year = $year1;
@@ -72,7 +70,17 @@ else
 {
 	$year = $year2;
 }
-$file = fopen("test.xml","w");
+
+//echo $id.".xml";
+$FileName = $id.".xml";
+
+if(!(isValidYear($year)))
+{
+	exit(1);
+}
+
+$file = fopen("xml/$FileName","w");
+chmod("xml/$FileName", 0777); 
 
 echo fwrite($file,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <!DOCTYPE voters_list SYSTEM \"voters_list.dtd\">\n
@@ -96,12 +104,28 @@ else
 	echo fwrite($file,"\t\t\t<father />\n\t\t\t<mother />\n\t\t\t<husband />\n");
 }
 echo fwrite($file, "\t\t</name>
-\t\t<sex>$sex</sex>
-\t\t<dob>$DBday-$DBmonth-$DByear</dob>
-\t\t<age>$age</age>
+\t\t<sex>$sex</sex>\n");
+if($DBday)
+{
+	echo fwrite($file,"\t\t<dob>$DBday-$DBmonth-$DByear</dob>\n");
+}
+elseif($DBmonth && $DByear)
+{
+	echo fwrite($file,"\t\t<dob>00-$DBmonth-$DByear</dob>\n");
+}
+elseif($DByear)
+{
+	echo fwrite($file,"\t\t<dob>00-00-$DByear</dob>\n");
+}
+else
+{
+	echo fwrite($file,"\t\t<dob />\n");
+}
+echo fwrite($file,"\t\t<age>$age</age>
 \t\t<qualification>$qualification</qualification>
 \t\t<occupation>$occupation</occupation>
 \t\t<address>
+\t\t\t<details>$details</details>
 \t\t\t<house_num>$houseNum</house_num>
 \t\t\t<street>$street</street>
 \t\t\t<town>$town</town>
@@ -115,7 +139,7 @@ echo fwrite($file, "\t\t</name>
 \t\t<graduation_details>
 \t\t\t<subject>$sub</subject>
 \t\t\t<university>$university</university>
-\t\t\t<year>$year</year>
+\t\t\t<year>".isValidYear($year)."</year>
 \t\t</graduation_details>
 \t\t<constituency_details>
 \t\t\t<nummber>$nummber</nummber>
@@ -127,7 +151,25 @@ echo fwrite($file, "\t\t</name>
 \t</entry>
 </voters_list>\n");
 fclose($file);
-echo "File generated";
+
+echo "<div class=\"row\">
+			<div class=\"col-xs-12 outFile\">$id.xml File Generated</div>
+		</div>";
+
+function isValidYear($year)
+{
+	if(preg_match("/^[0-9][0-9][0-9][0-9]$/", $year))
+	{
+		return $year;
+	}
+	else
+	{
+		echo "<div class=\"row\">
+			<div class=\"col-xs-12 red\">Error: Please Enter valid graduation year</div>
+		</div>";
+	}
+	
+}
 ?>
 </div>
 </body>
