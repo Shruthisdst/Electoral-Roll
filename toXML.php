@@ -136,10 +136,18 @@ echo fwrite($file,"\t\t<age>$age</age>
 \t\t\t<telephone>$telephone</telephone>
 \t\t\t<email>$email</email>
 \t\t</address>
-\t\t<graduation_details>
-\t\t\t<subject>$sub</subject>
-\t\t\t<university>$university</university>
-\t\t\t<year>".isValidYear($year)."</year>
+\t\t<graduation_details>\n");
+if($university)
+{
+	echo fwrite($file,"\t\t\t<subject />
+	\t\t<university>$university</university>\n");
+}
+else
+{
+	echo fwrite($file,"\t\t\t<subject>$sub</subject>
+	\t\t<university />\n");
+}
+echo fwrite($file,"\t\t\t<year>".isValidYear($year)."</year>
 \t\t</graduation_details>
 \t\t<constituency_details>
 \t\t\t<nummber>$nummber</nummber>
