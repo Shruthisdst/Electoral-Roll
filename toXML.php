@@ -49,6 +49,7 @@ $university = $_POST['I_sec2_1a'];
 $year1 = $_POST['I_sec2_1b'];
 $sub = $_POST['I_sec2_2a'];
 $year2 = $_POST['I_sec2_2b'];
+$cdetails = $_POST['II_sec1_1'];
 $nummber = $_POST['II_sec2_1'];
 $cname = $_POST['II_sec2_2'];
 $part = $_POST['II_sec3_1'];
@@ -74,7 +75,7 @@ else
 //echo $id.".xml";
 $FileName = $id.".xml";
 
-if(!(isValidYear($year)))
+if($year != '' && !(isValidYear($year)))
 {
 	exit(1);
 }
@@ -147,16 +148,30 @@ else
 	echo fwrite($file,"\t\t\t<subject>$sub</subject>
 	\t\t<university />\n");
 }
-echo fwrite($file,"\t\t\t<year>".isValidYear($year)."</year>
-\t\t</graduation_details>
-\t\t<constituency_details>
-\t\t\t<nummber>$nummber</nummber>
-\t\t\t<cname>$cname</cname>
-\t\t\t<part>$part</part>
-\t\t\t<psnum>$psnum</psnum>
-\t\t\t<epic_num>$epic_num</epic_num>
-\t\t</constituency_details>
-\t</entry>
+if($year != '')
+{
+	echo fwrite($file,"\t\t\t<year>".isValidYear($year)."</year>\n");
+}
+else
+{
+	echo fwrite($file,"\t\t\t<year>$year</year>\n");
+}
+echo fwrite($file,"\t\t</graduation_details>\n");
+if($cdetails == 'yes')
+{
+	echo fwrite($file,"\t\t<constituency_details>
+	\t\t<nummber>$nummber</nummber>
+	\t\t<cname>$cname</cname>
+	\t\t<part>$part</part>
+	\t\t<psnum>$psnum</psnum>
+	\t\t<epic_num>$epic_num</epic_num>
+	\t</constituency_details>\n");
+}
+else
+{
+	echo fwrite($file,"\t\t<constituency_details />\n");
+}
+echo fwrite($file,"\t</entry>
 </voters_list>\n");
 fclose($file);
 
