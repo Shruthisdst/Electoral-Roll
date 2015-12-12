@@ -137,17 +137,10 @@ echo fwrite($file,"\t\t<age>$age</age>
 \t\t\t<telephone>$telephone</telephone>
 \t\t\t<email>$email</email>
 \t\t</address>
-\t\t<graduation_details>\n");
-if($university)
-{
-	echo fwrite($file,"\t\t\t<subject />
-	\t\t<university>$university</university>\n");
-}
-else
-{
-	echo fwrite($file,"\t\t\t<subject>$sub</subject>
-	\t\t<university />\n");
-}
+\t\t<graduation_details>
+\t\t\t<university>$university</university>
+\t\t\t<subject>$sub</subject>\n");
+
 if($year != '')
 {
 	echo fwrite($file,"\t\t\t<year>".isValidYear($year)."</year>\n");
